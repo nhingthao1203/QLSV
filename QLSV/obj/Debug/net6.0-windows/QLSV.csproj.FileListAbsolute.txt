@@ -19,7 +19,6 @@ D:\LTGD\QLSV\QLSV\obj\Debug\net6.0-windows\QLSV.genruntimeconfig.cache
 D:\LTGD\QLSV\QLSV\obj\Debug\net6.0-windows\ref\QLSV.dll
 D:\LTGD\QLSV\QLSV\obj\Debug\net6.0-windows\QLSV.AddSV.resources
 D:\LTGD\QLSV\QLSV\obj\Debug\net6.0-windows\QLSV.ShowSV.resources
-D:\LTGD\QLSV\QLSV\obj\Debug\net6.0-windows\QLSV.FindSV.resources
 D:\LTGD\QLSV\QLSV\obj\Debug\net6.0-windows\QLSV.Home.resources
 D:\LTGD\QLSV\QLSV\bin\Debug\net6.0-windows\ClosedXML.dll
 D:\LTGD\QLSV\QLSV\bin\Debug\net6.0-windows\DocumentFormat.OpenXml.dll
@@ -28,3 +27,6 @@ D:\LTGD\QLSV\QLSV\bin\Debug\net6.0-windows\Irony.dll
 D:\LTGD\QLSV\QLSV\bin\Debug\net6.0-windows\SixLabors.Fonts.dll
 D:\LTGD\QLSV\QLSV\bin\Debug\net6.0-windows\XLParser.dll
 D:\LTGD\QLSV\QLSV\obj\Debug\net6.0-windows\QLSV.csproj.CopyComplete
+D:\LTGD\QLSV\QLSV\obj\Debug\net6.0-windows\QLSV.Edit.resources
+D:\LTGD\QLSV\QLSV\obj\Debug\net6.0-windows\QLSV.FindSV.resources
+D:\LTGD\QLSV\QLSV\obj\Debug\net6.0-windows\QLSV.Signin.resources

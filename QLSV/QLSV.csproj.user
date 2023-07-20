@@ -4,6 +4,9 @@
     <Compile Update="AddSV.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Edit.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="FindSV.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -17,6 +20,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="ShowSV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Signin.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

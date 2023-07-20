@@ -76,6 +76,7 @@
             button2.TabIndex = 5;
             button2.Text = "Đăng Ký ";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // Form1
             // 

@@ -14,8 +14,17 @@ namespace QLSV
 
         private void button1_Click(object sender, EventArgs e)
         {
+            this.Hide();
             var login = new Login();
-            login.ShowDialog();
+            login.ShowDialog(); 
+            
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            var signin = new Signin();
+            signin.ShowDialog();
         }
     }
 }
