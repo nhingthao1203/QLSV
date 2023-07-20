@@ -15,6 +15,7 @@ namespace QLSV
         public Login()
         {
             InitializeComponent();
+
         }
 
 
@@ -38,12 +39,13 @@ namespace QLSV
             if (ValidateUser(username, password))
             {
 
-                label5.Visible = true;
+                //label5.Visible = true;
                 // Đóng form đăng nhập
                 DialogResult = DialogResult.OK;
-                Close();
+                this.Hide();
                 var home = new Home();
                 home.ShowDialog();
+
             }
             else
             {
@@ -55,9 +57,18 @@ namespace QLSV
 
         }
 
+
         private void Login_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            Form1 form1 = new Form1();
+            form1.ShowDialog();
         }
     }
 }

@@ -46,10 +46,11 @@
             label9 = new Label();
             groupBox2 = new GroupBox();
             cboMathScore = new ComboBox();
-            label7 = new Label();
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
+            button2 = new Button();
+            button3 = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             SuspendLayout();
@@ -57,7 +58,7 @@
             // button1
             // 
             button1.Font = new Font("Times New Roman", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            button1.Location = new Point(319, 418);
+            button1.Location = new Point(328, 421);
             button1.Name = "button1";
             button1.Size = new Size(157, 43);
             button1.TabIndex = 31;
@@ -238,16 +239,6 @@
             cboMathScore.Size = new Size(60, 25);
             cboMathScore.TabIndex = 15;
             // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
-            label7.Location = new Point(255, 429);
-            label7.Name = "label7";
-            label7.Size = new Size(275, 22);
-            label7.TabIndex = 30;
-            label7.Text = "Đã Thêm Sinh Viên Thành Công";
-            // 
             // label3
             // 
             label3.AutoSize = true;
@@ -274,21 +265,46 @@
             label1.Font = new Font("Times New Roman", 24F, FontStyle.Bold, GraphicsUnit.Point);
             label1.Location = new Point(294, 9);
             label1.Name = "label1";
-            label1.Size = new Size(236, 36);
+            label1.Size = new Size(148, 36);
             label1.TabIndex = 23;
-            label1.Text = "Thêm Sinh Viên";
+            label1.Text = "Sinh Viên";
+            // 
+            // button2
+            // 
+            button2.Font = new Font("Times New Roman", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
+            button2.Location = new Point(90, 421);
+            button2.Margin = new Padding(3, 2, 3, 2);
+            button2.Name = "button2";
+            button2.Size = new Size(149, 38);
+            button2.TabIndex = 32;
+            button2.Text = "Trở về";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
+            // button3
+            // 
+            button3.Font = new Font("Times New Roman", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
+            button3.Location = new Point(576, 426);
+            button3.Margin = new Padding(3, 2, 3, 2);
+            button3.Name = "button3";
+            button3.Size = new Size(149, 38);
+            button3.TabIndex = 33;
+            button3.Text = "Cập nhật";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // AddSV
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(797, 485);
+            Controls.Add(button3);
+            Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(groupBox1);
             Controls.Add(txtID);
             Controls.Add(txtName);
             Controls.Add(groupBox2);
-            Controls.Add(label7);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -322,9 +338,10 @@
         private Label label9;
         private GroupBox groupBox2;
         private ComboBox cboMathScore;
-        private Label label7;
         private Label label3;
         private Label label2;
         private Label label1;
+        private Button button2;
+        private Button button3;
     }
 }

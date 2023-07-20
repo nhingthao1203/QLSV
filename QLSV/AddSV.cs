@@ -15,19 +15,25 @@ namespace QLSV
 {
     public partial class AddSV : Form
     {
+        public SinhVien UpdatedSinhVien { get; private set; }
 
         private Truong truong;
 
-        public AddSV(Truong truong)
+        public AddSV(Truong truong, SinhVien sinhVien)
         {
             InitializeComponent();
             this.truong = truong;
+            //txtName.Text = sinhVien.StudentName;
+            if (sinhVien != null)
+            {
+                txtID.Text = sinhVien.StudentID;
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if(!string.IsNullOrWhiteSpace(txtID.Text) &&
-                !string.IsNullOrWhiteSpace(txtName.Text)&&
+            if (!string.IsNullOrWhiteSpace(txtID.Text) &&
+                !string.IsNullOrWhiteSpace(txtName.Text) &&
                     cboAge.SelectedItem != null &&
                     cboMathScore.SelectedItem != null &&
                     cboPhysicSorce.SelectedItem != null &&
@@ -61,20 +67,23 @@ namespace QLSV
                 {
                     sinhVien.Rank = "Yếu";
                 }
-                //if (dtpDateOfBirth.Value.Year - sinhVien.StudentAge != 0)
-                //{
-                //    MessageBox.Show("Tuổi người dùng nhập không khớp với nhau!");
-                //}    
-                    
+                // Kiểm tra độ tuổi
+                int calculatedAge = DateTime.Now.Year - sinhVien.StudentDateOfBirth.Year;
+                if (calculatedAge != sinhVien.StudentAge)
+                {
+                    MessageBox.Show("Tuổi người dùng nhập không khớp với nhau!");
+                    return; // Dừng xử lý
+                }
+
                 truong.ThemSinhVien(sinhVien);
                 MessageBox.Show("Thêm sinh viên thành công!");
                 ClearForm();
- 
-            } 
+
+            }
             else
             {
                 MessageBox.Show("Vui lòng điền đầy đủ thông tin!");
-            }    
+            }
 
 
         }
@@ -99,5 +108,61 @@ namespace QLSV
         {
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            DialogResult = DialogResult.OK;
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            
+            if (!string.IsNullOrWhiteSpace(txtID.Text) &&
+                !string.IsNullOrWhiteSpace(txtName.Text) &&
+                cboAge.SelectedItem != null &&
+                cboMathScore.SelectedItem != null &&
+                cboPhysicSorce.SelectedItem != null &&
+                cboChemistryScore.SelectedItem != null)
+            {
+                // Lấy thông tin sinh viên cần cập nhật từ các điều khiển trên form
+                string updatedName = txtName.Text;
+                string updatedID = txtID.Text;
+                string updatedGender = radMale.Checked ? "Nam" : "Nữ";
+                int updatedAge = int.Parse(cboAge.SelectedItem.ToString());
+                double updatedMathScore = double.Parse(cboMathScore.SelectedItem.ToString());
+                double updatedPhysicsScore = double.Parse(cboPhysicSorce.SelectedItem.ToString());
+                double updatedChemistryScore = double.Parse(cboChemistryScore.SelectedItem.ToString());
+                DateTime updatedDateOfBirth = dtpDateOfBirth.Value;
+
+                // Kiểm tra độ tuổi
+                int calculatedAge = DateTime.Now.Year - updatedDateOfBirth.Year;
+                if (calculatedAge != updatedAge)
+                {
+                    MessageBox.Show("Tuổi người dùng nhập không khớp với nhau!");
+                    return; // Dừng xử lý
+                }
+
+                // Cập nhật thông tin sinh viên
+                UpdatedSinhVien = new SinhVien
+                {
+                    StudentName = updatedName,
+                    StudentID = updatedID,
+                    StudentGender = updatedGender,
+                    StudentAge = updatedAge,
+                    StudentMathScore = updatedMathScore,
+                    StudentPhysicsScore = updatedPhysicsScore,
+                    StudentChemistryScore = updatedChemistryScore,
+                    StudentDateOfBirth = updatedDateOfBirth
+                };
+
+                // Đóng form AddSV
+                this.Close();
+            }
+        }
     }
-}
+
+
+ }
+
