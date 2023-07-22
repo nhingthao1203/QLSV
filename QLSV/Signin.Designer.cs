@@ -49,7 +49,7 @@
             button2.Text = "Trở về";
             button2.UseVisualStyleBackColor = true;
             button2.UseWaitCursor = true;
-            button2.Click += button2_Click_1;
+            button2.Click += button2_Click;
             // 
             // button1
             // 
@@ -61,7 +61,7 @@
             button1.Text = "Đăng ký";
             button1.UseVisualStyleBackColor = true;
             button1.UseWaitCursor = true;
-            button1.Click += button1_Click_1;
+            button1.Click += button1_Click;
             // 
             // txtPassword1
             // 
@@ -69,9 +69,7 @@
             txtPassword1.Name = "txtPassword1";
             txtPassword1.Size = new Size(417, 27);
             txtPassword1.TabIndex = 35;
-            txtPassword1.Text = "admin123";
             txtPassword1.UseWaitCursor = true;
-            txtPassword1.TextChanged += textBox1_TextChanged;
             // 
             // label4
             // 
@@ -83,7 +81,6 @@
             label4.TabIndex = 34;
             label4.Text = "Password Again";
             label4.UseWaitCursor = true;
-            label4.Click += label4_Click;
             // 
             // txtPassword
             // 
@@ -91,9 +88,7 @@
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(417, 27);
             txtPassword.TabIndex = 33;
-            txtPassword.Text = "admin123";
             txtPassword.UseWaitCursor = true;
-            txtPassword.TextChanged += txtPassword_TextChanged;
             // 
             // txtUsername
             // 
@@ -102,9 +97,7 @@
             txtUsername.Name = "txtUsername";
             txtUsername.Size = new Size(417, 27);
             txtUsername.TabIndex = 32;
-            txtUsername.Text = "admin";
             txtUsername.UseWaitCursor = true;
-            txtUsername.TextChanged += txtUsername_TextChanged;
             // 
             // label3
             // 
@@ -116,7 +109,6 @@
             label3.TabIndex = 31;
             label3.Text = "Password";
             label3.UseWaitCursor = true;
-            label3.Click += label3_Click;
             // 
             // label2
             // 
@@ -128,7 +120,6 @@
             label2.TabIndex = 30;
             label2.Text = "User";
             label2.UseWaitCursor = true;
-            label2.Click += label2_Click;
             // 
             // label1
             // 
@@ -140,7 +131,6 @@
             label1.TabIndex = 29;
             label1.Text = "QUẢN LÝ THÔNG TIN SINH VIÊN";
             label1.UseWaitCursor = true;
-            label1.Click += label1_Click;
             // 
             // Signin
             // 
@@ -159,6 +149,7 @@
             Name = "Signin";
             Text = "Signin";
             UseWaitCursor = true;
+            Load += Signin_Load;
             ResumeLayout(false);
             PerformLayout();
         }

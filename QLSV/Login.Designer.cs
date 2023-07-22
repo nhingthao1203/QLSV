@@ -53,7 +53,6 @@
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(417, 27);
             txtPassword.TabIndex = 23;
-            txtPassword.Text = "admin123";
             // 
             // txtUsername
             // 
@@ -62,7 +61,6 @@
             txtUsername.Name = "txtUsername";
             txtUsername.Size = new Size(417, 27);
             txtUsername.TabIndex = 22;
-            txtUsername.Text = "admin";
             // 
             // label3
             // 
@@ -93,7 +91,7 @@
             button1.TabIndex = 26;
             button1.Text = "Đăng nhập";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            button1.Click += button1_Click_1;
             // 
             // button2
             // 

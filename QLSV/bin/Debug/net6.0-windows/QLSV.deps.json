@@ -12,6 +12,11 @@
         },
         "runtime": {
           "QLSV.dll": {}
+        },
+        "resources": {
+          "aa/QLSV.resources.dll": {
+            "locale": "aa"
+          }
         }
       },
       "ClosedXML/0.102.0": {

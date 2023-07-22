@@ -27,7 +27,10 @@ namespace QLSV
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Close();
+            Hide();
+            Home home = new Home();
+            home.Show();
+    
         }
 
         private void button1_Click(object sender, EventArgs e)
