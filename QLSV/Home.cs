@@ -199,19 +199,19 @@ namespace QLSV
                 worksheet.Cell(1, 9).Value = "GPA";
                 worksheet.Cell(1, 10).Value = "Rank";
 
-                for (int i = 1; i < danhSachSinhVien.Count; i++)
+                for (int i = 0; i < danhSachSinhVien.Count; i++)
                 {
-                    var sv = danhSachSinhVien[i];
-                    worksheet.Cell(i + 1, 1).Value = sv.StudentName;
-                    worksheet.Cell(i + 1, 2).Value = sv.StudentID;
-                    worksheet.Cell(i + 1, 3).Value = sv.StudentAge;
-                    worksheet.Cell(i + 1, 4).Value = sv.StudentGender;
-                    worksheet.Cell(i + 1, 5).Value = sv.StudentDateOfBirth;
-                    worksheet.Cell(i + 1, 6).Value = sv.StudentMathScore;
-                    worksheet.Cell(i + 1, 7).Value = sv.StudentPhysicsScore;
-                    worksheet.Cell(i + 1, 8).Value = sv.StudentChemistryScore;
-                    worksheet.Cell(i + 1, 9).Value = sv.GPA;
-                    worksheet.Cell(i + 1, 10).Value = sv.Rank;
+                    SinhVien sv = danhSachSinhVien[i];
+                    worksheet.Cell(i + 2, 1).Value = sv.StudentName;
+                    worksheet.Cell(i + 2, 2).Value = sv.StudentID;
+                    worksheet.Cell(i + 2, 3).Value = sv.StudentAge;
+                    worksheet.Cell(i + 2, 4).Value = sv.StudentGender;
+                    worksheet.Cell(i + 2, 5).Value = sv.StudentDateOfBirth;
+                    worksheet.Cell(i + 2, 6).Value = sv.StudentMathScore;
+                    worksheet.Cell(i + 2, 7).Value = sv.StudentPhysicsScore;
+                    worksheet.Cell(i + 2, 8).Value = sv.StudentChemistryScore;
+                    worksheet.Cell(i + 2, 9).Value = sv.GPA;
+                    worksheet.Cell(i + 2, 10).Value = sv.Rank;
                 }
 
                 workbook.SaveAs(filePath);
@@ -305,13 +305,14 @@ namespace QLSV
         {
             List<SinhVien> danhSachSinhVien = truong.LayDanhSachSinhVien();
 
-            // Sắp xếp danh sách sinh viên theo trường "Id"
-            danhSachSinhVien = danhSachSinhVien.OrderBy(sv => sv.StudentID).ToList();
+            // Sắp xếp danh sách sinh viên theo trường "Id" bằng cách sử dụng comparer tùy chỉnh
+            danhSachSinhVien.Sort(new SinhVienComparerById());
+
             this.Hide();
             ShowSV showSV = new ShowSV(truong, null);
             showSV.DataGridView1.DataSource = danhSachSinhVien;
             showSV.Show();
-           
+
             showSV.FormClosed += showSV_FormClosed;
         }
 
@@ -353,6 +354,17 @@ namespace QLSV
             Info info = new Info();
             info.ShowDialog();
         }
+    }
+}
+public class SinhVienComparerById : IComparer<SinhVien>
+{
+    public int Compare(SinhVien x, SinhVien y)
+    {
+       int idX = int.Parse(x.StudentID);
+        int idY = int.Parse(y.StudentID);
+
+        // Sử dụng phương thức CompareTo để so sánh hai số nguyên
+        return idX.CompareTo(idY);
     }
 }
 public class SinhVien
