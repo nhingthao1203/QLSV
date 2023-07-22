@@ -25,7 +25,7 @@ namespace QLSV
         private void btnAdd_Click(object sender, EventArgs e)
         {
             this.Hide();
-            AddSV addSV = new AddSV(truong, null,false);
+            AddSV addSV = new AddSV(truong, null, false);
             addSV.FormClosed += AddSV_FormClosed; // Gán trình xử lý sự kiện
             addSV.ShowDialog();
             //lưu cập nhật vào file excel
@@ -42,7 +42,7 @@ namespace QLSV
             this.Show(); // Hiển thị lại form Home
         }
         private void button4_Click(object sender, EventArgs e)
-        { 
+        {
             List<SinhVien> danhSachSinhVien = truong.LayDanhSachSinhVien();
             ShowSV showSV = new ShowSV(truong, null);
             showSV.DataGridView1.DataSource = danhSachSinhVien;
@@ -328,6 +328,11 @@ namespace QLSV
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

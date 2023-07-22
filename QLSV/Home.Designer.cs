@@ -52,6 +52,9 @@
             // 
             // groupBox1
             // 
+            groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            groupBox1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            groupBox1.BackColor = Color.LightGray;
             groupBox1.Controls.Add(btnSearch);
             groupBox1.Controls.Add(btnDelete);
             groupBox1.Controls.Add(btnUpdate);
@@ -59,7 +62,7 @@
             groupBox1.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
             groupBox1.Location = new Point(54, 121);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(610, 183);
+            groupBox1.Size = new Size(638, 183);
             groupBox1.TabIndex = 3;
             groupBox1.TabStop = false;
             groupBox1.Text = "SINH VIÊN ";
@@ -110,6 +113,7 @@
             // 
             // groupBox2
             // 
+            groupBox2.BackColor = SystemColors.ScrollBar;
             groupBox2.Controls.Add(button4);
             groupBox2.Controls.Add(SortByName);
             groupBox2.Controls.Add(SortByID);
@@ -117,7 +121,7 @@
             groupBox2.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point);
             groupBox2.Location = new Point(54, 328);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(723, 185);
+            groupBox2.Size = new Size(638, 185);
             groupBox2.TabIndex = 5;
             groupBox2.TabStop = false;
             groupBox2.Text = "SẮP XẾP";
@@ -168,13 +172,16 @@
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             label1.AutoSize = true;
             label1.Font = new Font("Times New Roman", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(154, 65);
+            label1.ImageAlign = ContentAlignment.TopCenter;
+            label1.Location = new Point(130, 65);
             label1.Name = "label1";
             label1.Size = new Size(496, 35);
             label1.TabIndex = 4;
             label1.Text = "QUẢN LÝ THÔNG TIN SINH VIÊN";
+            label1.TextAlign = ContentAlignment.TopCenter;
             // 
             // menuStrip1
             // 
@@ -182,7 +189,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { tàiKhoảnToolStripMenuItem, aboutToolStripMenuItem, exitToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(802, 28);
+            menuStrip1.Size = new Size(732, 28);
             menuStrip1.TabIndex = 6;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -212,6 +219,7 @@
             aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             aboutToolStripMenuItem.Size = new Size(64, 24);
             aboutToolStripMenuItem.Text = "About";
+            aboutToolStripMenuItem.Click += aboutToolStripMenuItem_Click;
             // 
             // exitToolStripMenuItem
             // 
@@ -224,7 +232,8 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(802, 532);
+            BackgroundImageLayout = ImageLayout.Zoom;
+            ClientSize = new Size(732, 532);
             Controls.Add(groupBox1);
             Controls.Add(groupBox2);
             Controls.Add(label1);

@@ -63,6 +63,46 @@ namespace QLSV.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _8726275_signin_icon {
+            get {
+                object obj = ResourceManager.GetObject("8726275_signin_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _8726275_signin_icon1 {
+            get {
+                object obj = ResourceManager.GetObject("8726275_signin_icon1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap abue5 {
+            get {
+                object obj = ResourceManager.GetObject("abue5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap background_2d_dep_cho_photoshop_023229230 {
+            get {
+                object obj = ResourceManager.GetObject("background-2d-dep-cho-photoshop_023229230", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LOGO_TRUONGV21_12_2018_01 {
             get {
                 object obj = ResourceManager.GetObject("LOGO-TRUONGV21-12-2018-01", resourceCulture);

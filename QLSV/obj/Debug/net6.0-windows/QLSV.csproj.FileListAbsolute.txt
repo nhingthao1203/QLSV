@@ -33,3 +33,4 @@ D:\LTGD\QLSV\QLSV\obj\Debug\net6.0-windows\QLSV.Signin.resources
 D:\LTGD\QLSV\QLSV\bin\Debug\net6.0-windows\aa\QLSV.resources.dll
 D:\LTGD\QLSV\QLSV\obj\Debug\net6.0-windows\QLSV.Home.aa.resources
 D:\LTGD\QLSV\QLSV\obj\Debug\net6.0-windows\aa\QLSV.resources.dll
+D:\LTGD\QLSV\QLSV\obj\Debug\net6.0-windows\QLSV.Info.resources
