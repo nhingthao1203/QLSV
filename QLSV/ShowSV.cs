@@ -31,7 +31,7 @@ namespace QLSV
             //ý tưởng khi double click vào sinh viên trên datagridview
             //    sẽ hiện ra form cập nhật thông tin sinh viên 
             //    cập nhật thì láy mã sv
-            if(e.RowIndex >= 0)
+            if (e.RowIndex >= 0)
             {
                 var ID = DataGridView1.Rows[e.RowIndex].Cells["StudentID"].Value.ToString();
                 //truyền masv vào form bên kia

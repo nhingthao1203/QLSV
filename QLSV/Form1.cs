@@ -16,8 +16,8 @@ namespace QLSV
         {
             this.Hide();
             var login = new Login();
-            login.ShowDialog(); 
-            
+            login.ShowDialog();
+
         }
 
         private void button2_Click(object sender, EventArgs e)

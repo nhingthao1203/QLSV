@@ -31,6 +31,8 @@ namespace QLSV
             if (isUpdateMode)
             {
                 button1.Visible = false;
+                txtID.ReadOnly = true;
+                txtID.Enabled = true;
             }
             else
             {
@@ -83,9 +85,21 @@ namespace QLSV
                     return; // Dừng xử lý
                 }
 
-                truong.ThemSinhVien(sinhVien);
-                MessageBox.Show("Thêm sinh viên thành công!");
-                ClearForm();
+                SinhVien sinhVien1 = truong.TimSinhVien(sinhVien.StudentID);
+                if (sinhVien1 != null)
+                {
+                    MessageBox.Show("Đã tồn tại sinh viên này!");
+                    return;
+                }
+
+               
+                    truong.ThemSinhVien(sinhVien);
+                    MessageBox.Show("Thêm sinh viên thành công!");
+                
+                    this.Close();
+                    
+
+
 
             }
             else
@@ -119,14 +133,14 @@ namespace QLSV
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Hide();
             DialogResult = DialogResult.OK;
 
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            
+
             if (!string.IsNullOrWhiteSpace(txtID.Text) &&
                 !string.IsNullOrWhiteSpace(txtName.Text) &&
                 cboAge.SelectedItem != null &&
@@ -172,5 +186,5 @@ namespace QLSV
     }
 
 
- }
+}
 

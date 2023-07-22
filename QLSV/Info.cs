@@ -25,7 +25,7 @@ namespace QLSV
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Home home = new Home(); 
+            Home home = new Home();
             home.ShowDialog();
         }
     }

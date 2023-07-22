@@ -31,7 +31,7 @@ namespace QLSV
             Hide();
             Home home = new Home();
             home.Show();
-    
+
         }
         private void DeleteDataInExcel(string filePath, List<SinhVien> danhSachSinhVien)
         {

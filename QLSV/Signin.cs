@@ -51,9 +51,10 @@ namespace QLSV
 
                 // Đóng form Signin và hiển thị lại form đăng nhập (Form1)
                 this.DialogResult = DialogResult.OK;
-                Form1 form = new Form1();
-                form.ShowDialog();
+                
                 this.Hide();
+                Form1 form = new Form1();   
+                form.ShowDialog();
             }
 
         }

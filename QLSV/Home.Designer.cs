@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             groupBox1 = new GroupBox();
             btnSearch = new Button();
             btnDelete = new Button();
@@ -238,6 +239,7 @@
             Controls.Add(groupBox2);
             Controls.Add(label1);
             Controls.Add(menuStrip1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
             Name = "Home";
             Text = "Home";

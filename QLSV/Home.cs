@@ -18,8 +18,10 @@ namespace QLSV
 
         public Home()
         {
+            
             InitializeComponent();
             truong = new Truong();
+                        
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -27,7 +29,7 @@ namespace QLSV
             this.Hide();
             AddSV addSV = new AddSV(truong, null, false);
             addSV.FormClosed += AddSV_FormClosed; // Gán trình xử lý sự kiện
-            addSV.ShowDialog();
+            addSV.Show();
             //lưu cập nhật vào file excel
             SaveDataToExcel(@"D:\LTGD\QLSV\QLSV\Student.xlsx", truong.LayDanhSachSinhVien());
 
@@ -35,11 +37,26 @@ namespace QLSV
 
         private void AddSV_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.Show(); // Hiển thị lại form Home
+            SinhVien newSinhVien = (sender as AddSV).UpdatedSinhVien;
+            if (newSinhVien != null)
+            {
+                // Thêm sinh viên mới vào danh sách trong lớp Truong
+                truong.ThemSinhVien(newSinhVien);
+
+                // Hiển thị thông báo thêm sinh viên thành công
+                MessageBox.Show("Thêm sinh viên thành công!");
+                
+                // Lưu cập nhật vào file excel
+                SaveDataToExcel(@"D:\LTGD\QLSV\QLSV\Student.xlsx", truong.LayDanhSachSinhVien());
+            }
+
+            this.Show();
+            // Hiển thị lại form Home
         }
         private void showSV_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.Show(); // Hiển thị lại form Home
+            
         }
         private void button4_Click(object sender, EventArgs e)
         {
@@ -182,19 +199,19 @@ namespace QLSV
                 worksheet.Cell(1, 9).Value = "GPA";
                 worksheet.Cell(1, 10).Value = "Rank";
 
-                for (int i = 0; i < danhSachSinhVien.Count; i++)
+                for (int i = 1; i < danhSachSinhVien.Count; i++)
                 {
                     var sv = danhSachSinhVien[i];
-                    worksheet.Cell(i + 2, 1).Value = sv.StudentName;
-                    worksheet.Cell(i + 2, 2).Value = sv.StudentID;
-                    worksheet.Cell(i + 2, 3).Value = sv.StudentAge;
-                    worksheet.Cell(i + 2, 4).Value = sv.StudentGender;
-                    worksheet.Cell(i + 2, 5).Value = sv.StudentDateOfBirth;
-                    worksheet.Cell(i + 2, 6).Value = sv.StudentMathScore;
-                    worksheet.Cell(i + 2, 7).Value = sv.StudentPhysicsScore;
-                    worksheet.Cell(i + 2, 8).Value = sv.StudentChemistryScore;
-                    worksheet.Cell(i + 2, 9).Value = sv.GPA;
-                    worksheet.Cell(i + 2, 10).Value = sv.Rank;
+                    worksheet.Cell(i + 1, 1).Value = sv.StudentName;
+                    worksheet.Cell(i + 1, 2).Value = sv.StudentID;
+                    worksheet.Cell(i + 1, 3).Value = sv.StudentAge;
+                    worksheet.Cell(i + 1, 4).Value = sv.StudentGender;
+                    worksheet.Cell(i + 1, 5).Value = sv.StudentDateOfBirth;
+                    worksheet.Cell(i + 1, 6).Value = sv.StudentMathScore;
+                    worksheet.Cell(i + 1, 7).Value = sv.StudentPhysicsScore;
+                    worksheet.Cell(i + 1, 8).Value = sv.StudentChemistryScore;
+                    worksheet.Cell(i + 1, 9).Value = sv.GPA;
+                    worksheet.Cell(i + 1, 10).Value = sv.Rank;
                 }
 
                 workbook.SaveAs(filePath);
@@ -214,16 +231,16 @@ namespace QLSV
                     SinhVien sv = danhSachSinhVien[i];
                     IXLRow dataRow = worksheet.Row(i + 2); // Excel rows start from index 1, so add 2 to get the correct row number
 
-                    dataRow.Cell(2).Value = sv.StudentName;
-                    dataRow.Cell(3).Value = sv.StudentID;
-                    dataRow.Cell(4).Value = sv.StudentAge;
-                    dataRow.Cell(5).Value = sv.StudentGender;
-                    dataRow.Cell(6).Value = sv.StudentDateOfBirth;
-                    dataRow.Cell(7).Value = sv.StudentMathScore;
-                    dataRow.Cell(8).Value = sv.StudentPhysicsScore;
-                    dataRow.Cell(9).Value = sv.StudentChemistryScore;
-                    dataRow.Cell(10).Value = sv.GPA;
-                    dataRow.Cell(11).Value = sv.Rank;
+                    dataRow.Cell(1).Value = sv.StudentName;
+                    dataRow.Cell(2).Value = sv.StudentID;
+                    dataRow.Cell(3).Value = sv.StudentAge;
+                    dataRow.Cell(4).Value = sv.StudentGender;
+                    dataRow.Cell(5).Value = sv.StudentDateOfBirth;
+                    dataRow.Cell(6).Value = sv.StudentMathScore;
+                    dataRow.Cell(7).Value = sv.StudentPhysicsScore;
+                    dataRow.Cell(8).Value = sv.StudentChemistryScore;
+                    dataRow.Cell(9).Value = sv.GPA;
+                    dataRow.Cell(10).Value = sv.Rank;
                 }
 
                 workbook.Save(); // Save the changes to the Excel file
@@ -276,11 +293,11 @@ namespace QLSV
 
             // Sắp xếp danh sách sinh viên theo trường "Id"
             danhSachSinhVien = danhSachSinhVien.OrderBy(sv => sv.GPA).ToList();
-
+            this.Hide();
             ShowSV showSV = new ShowSV(truong, null);
             showSV.DataGridView1.DataSource = danhSachSinhVien;
             showSV.Show();
-            this.Hide();
+            
             showSV.FormClosed += showSV_FormClosed;
         }
 
@@ -290,11 +307,11 @@ namespace QLSV
 
             // Sắp xếp danh sách sinh viên theo trường "Id"
             danhSachSinhVien = danhSachSinhVien.OrderBy(sv => sv.StudentID).ToList();
-
+            this.Hide();
             ShowSV showSV = new ShowSV(truong, null);
             showSV.DataGridView1.DataSource = danhSachSinhVien;
             showSV.Show();
-            this.Hide();
+           
             showSV.FormClosed += showSV_FormClosed;
         }
 
@@ -304,11 +321,11 @@ namespace QLSV
 
             // Sắp xếp danh sách sinh viên theo trường "Id"
             danhSachSinhVien = danhSachSinhVien.OrderBy(sv => sv.StudentName).ToList();
-
+            this.Hide();
             ShowSV showSV = new ShowSV(truong, null);
             showSV.DataGridView1.DataSource = danhSachSinhVien;
             showSV.Show();
-            this.Hide();
+           
             showSV.FormClosed += showSV_FormClosed;
         }
 
@@ -332,7 +349,9 @@ namespace QLSV
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            Info info = new Info();
+            info.ShowDialog();
         }
     }
 }

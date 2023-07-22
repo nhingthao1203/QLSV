@@ -65,7 +65,7 @@ namespace QLSV
         {
             Hide();
             Home home = new Home();
-            home.ShowDialog();  
+            home.ShowDialog();
         }
     }
 }

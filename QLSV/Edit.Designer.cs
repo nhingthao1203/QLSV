@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Edit));
             pictureBox1 = new PictureBox();
             label1 = new Label();
             button1 = new Button();
@@ -104,6 +105,7 @@
             Controls.Add(label1);
             Controls.Add(button1);
             Controls.Add(textBox1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 4, 3, 4);
             Name = "Edit";
             Text = "FindSV";
