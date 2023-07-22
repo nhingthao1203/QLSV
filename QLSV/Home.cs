@@ -25,9 +25,11 @@ namespace QLSV
         private void btnAdd_Click(object sender, EventArgs e)
         {
             this.Hide();
-            AddSV addSV = new AddSV(truong, null);
+            AddSV addSV = new AddSV(truong, null,false);
             addSV.FormClosed += AddSV_FormClosed; // Gán trình xử lý sự kiện
             addSV.ShowDialog();
+            //lưu cập nhật vào file excel
+            SaveDataToExcel(@"D:\LTGD\QLSV\QLSV\Student.xlsx", truong.LayDanhSachSinhVien());
 
         }
 
@@ -61,14 +63,14 @@ namespace QLSV
                     SinhVien sinhVien = new SinhVien();
                     IXLRow dataRow = worksheet.Row(row);
 
-                    sinhVien.StudentName = dataRow.Cell(2).GetString();
-                    sinhVien.StudentID = dataRow.Cell(3).GetString();
-                    sinhVien.StudentAge = dataRow.Cell(4).GetValue<int>();
-                    sinhVien.StudentGender = dataRow.Cell(5).GetString();
-                    sinhVien.StudentDateOfBirth = dataRow.Cell(6).GetValue<DateTime>();
-                    sinhVien.StudentMathScore = dataRow.Cell(7).GetValue<double>();
-                    sinhVien.StudentPhysicsScore = dataRow.Cell(8).GetValue<double>();
-                    sinhVien.StudentChemistryScore = dataRow.Cell(9).GetValue<double>();
+                    sinhVien.StudentName = dataRow.Cell(1).GetString();
+                    sinhVien.StudentID = dataRow.Cell(2).GetString();
+                    sinhVien.StudentAge = dataRow.Cell(3).GetValue<int>();
+                    sinhVien.StudentGender = dataRow.Cell(4).GetString();
+                    sinhVien.StudentDateOfBirth = dataRow.Cell(5).GetValue<DateTime>();
+                    sinhVien.StudentMathScore = dataRow.Cell(6).GetValue<double>();
+                    sinhVien.StudentPhysicsScore = dataRow.Cell(7).GetValue<double>();
+                    sinhVien.StudentChemistryScore = dataRow.Cell(8).GetValue<double>();
                     sinhVien.GPA = Math.Round(CalculateGPA(sinhVien), 1);
                     sinhVien.Rank = CalculateRank(sinhVien.GPA);
 
@@ -128,7 +130,7 @@ namespace QLSV
             {
                 // Sinh viên tồn tại, chuyển sang form AddSV để cập nhật thông tin
                 this.Hide();
-                AddSV addSV = new AddSV(truong, sinhVien);
+                AddSV addSV = new AddSV(truong, sinhVien, true);
                 addSV.FormClosed += (s, args) =>
                 {
                     this.Show(); // Hiển thị lại form Home khi form AddSV được đóng
@@ -151,6 +153,8 @@ namespace QLSV
 
                         // Hiển thị thông báo cập nhật thành công
                         MessageBox.Show("Cập nhật sinh viên thành công!");
+                        List<SinhVien> danhSachSinhVien = truong.LayDanhSachSinhVien();
+                        UpdateDataInExcel(@"D:\LTGD\QLSV\QLSV\Student.xlsx", danhSachSinhVien);
                     }
                 };
 
@@ -162,6 +166,109 @@ namespace QLSV
                 MessageBox.Show($"Không tồn tại sinh viên có mã {studentID}. Vui lòng điền lại.", "Lỗi");
             }
         }
+        private void SaveDataToExcel(string filePath, List<SinhVien> danhSachSinhVien)
+        {
+            using (XLWorkbook workbook = new XLWorkbook())
+            {
+                var worksheet = workbook.Worksheets.Add("Students");
+                worksheet.Cell(1, 1).Value = "StudentName";
+                worksheet.Cell(1, 2).Value = "StudentID";
+                worksheet.Cell(1, 3).Value = "StudentAge";
+                worksheet.Cell(1, 4).Value = "StudentGender";
+                worksheet.Cell(1, 5).Value = "StudentDateOfBirth";
+                worksheet.Cell(1, 6).Value = "StudentMathScore";
+                worksheet.Cell(1, 7).Value = "StudentPhysicsScore";
+                worksheet.Cell(1, 8).Value = "StudentChemistryScore";
+                worksheet.Cell(1, 9).Value = "GPA";
+                worksheet.Cell(1, 10).Value = "Rank";
+
+                for (int i = 0; i < danhSachSinhVien.Count; i++)
+                {
+                    var sv = danhSachSinhVien[i];
+                    worksheet.Cell(i + 2, 1).Value = sv.StudentName;
+                    worksheet.Cell(i + 2, 2).Value = sv.StudentID;
+                    worksheet.Cell(i + 2, 3).Value = sv.StudentAge;
+                    worksheet.Cell(i + 2, 4).Value = sv.StudentGender;
+                    worksheet.Cell(i + 2, 5).Value = sv.StudentDateOfBirth;
+                    worksheet.Cell(i + 2, 6).Value = sv.StudentMathScore;
+                    worksheet.Cell(i + 2, 7).Value = sv.StudentPhysicsScore;
+                    worksheet.Cell(i + 2, 8).Value = sv.StudentChemistryScore;
+                    worksheet.Cell(i + 2, 9).Value = sv.GPA;
+                    worksheet.Cell(i + 2, 10).Value = sv.Rank;
+                }
+
+                workbook.SaveAs(filePath);
+            }
+        }
+
+        private void UpdateDataInExcel(string filePath, List<SinhVien> danhSachSinhVien)
+        {
+            using (XLWorkbook workbook = new XLWorkbook(filePath))
+            {
+                IXLWorksheet worksheet = workbook.Worksheet(1); // Get the first worksheet
+                int rowCount = worksheet.RowsUsed().Count();
+
+                // Loop through the list of students and update the data in the Excel file
+                for (int i = 0; i < danhSachSinhVien.Count; i++)
+                {
+                    SinhVien sv = danhSachSinhVien[i];
+                    IXLRow dataRow = worksheet.Row(i + 2); // Excel rows start from index 1, so add 2 to get the correct row number
+
+                    dataRow.Cell(2).Value = sv.StudentName;
+                    dataRow.Cell(3).Value = sv.StudentID;
+                    dataRow.Cell(4).Value = sv.StudentAge;
+                    dataRow.Cell(5).Value = sv.StudentGender;
+                    dataRow.Cell(6).Value = sv.StudentDateOfBirth;
+                    dataRow.Cell(7).Value = sv.StudentMathScore;
+                    dataRow.Cell(8).Value = sv.StudentPhysicsScore;
+                    dataRow.Cell(9).Value = sv.StudentChemistryScore;
+                    dataRow.Cell(10).Value = sv.GPA;
+                    dataRow.Cell(11).Value = sv.Rank;
+                }
+
+                workbook.Save(); // Save the changes to the Excel file
+            }
+        }
+        private void DeleteDataInExcel(string filePath, List<SinhVien> danhSachSinhVien)
+        {
+            using (XLWorkbook workbook = new XLWorkbook(filePath))
+            {
+                IXLWorksheet worksheet = workbook.Worksheet(1); // Get the first worksheet
+
+                // Xóa toàn bộ dữ liệu cũ trong file Excel
+                worksheet.Clear();
+
+                // Ghi lại dữ liệu mới từ danh sách sinh viên đã được cập nhật
+                worksheet.Cell(1, 1).Value = "StudentName";
+                worksheet.Cell(1, 2).Value = "StudentID";
+                worksheet.Cell(1, 3).Value = "StudentAge";
+                worksheet.Cell(1, 4).Value = "StudentGender";
+                worksheet.Cell(1, 5).Value = "StudentDateOfBirth";
+                worksheet.Cell(1, 6).Value = "StudentMathScore";
+                worksheet.Cell(1, 7).Value = "StudentPhysicsScore";
+                worksheet.Cell(1, 8).Value = "StudentChemistryScore";
+                worksheet.Cell(1, 9).Value = "GPA";
+                worksheet.Cell(1, 10).Value = "Rank";
+
+                for (int i = 0; i < danhSachSinhVien.Count; i++)
+                {
+                    SinhVien sv = danhSachSinhVien[i];
+                    worksheet.Cell(i + 2, 1).Value = sv.StudentName;
+                    worksheet.Cell(i + 2, 2).Value = sv.StudentID;
+                    worksheet.Cell(i + 2, 3).Value = sv.StudentAge;
+                    worksheet.Cell(i + 2, 4).Value = sv.StudentGender;
+                    worksheet.Cell(i + 2, 5).Value = sv.StudentDateOfBirth;
+                    worksheet.Cell(i + 2, 6).Value = sv.StudentMathScore;
+                    worksheet.Cell(i + 2, 7).Value = sv.StudentPhysicsScore;
+                    worksheet.Cell(i + 2, 8).Value = sv.StudentChemistryScore;
+                    worksheet.Cell(i + 2, 9).Value = sv.GPA;
+                    worksheet.Cell(i + 2, 10).Value = sv.Rank;
+                }
+
+                workbook.Save(); // Save the changes to the Excel file
+            }
+        }
+
 
         private void button1_Click(object sender, EventArgs e)
         {

@@ -37,7 +37,7 @@ namespace QLSV
                 //truyền masv vào form bên kia
                 SinhVien sinhVien = truong.TimSinhVien(ID);
                 MessageBox.Show("Mã sinh viên nhận được: " + ID);
-                AddSV addSV = new AddSV(truong, sinhVien);
+                AddSV addSV = new AddSV(truong, sinhVien, true);
                 SinhVien updatedSinhVien = addSV.UpdatedSinhVien;
                 Hide();
                 addSV.FormClosed += (s, args) =>

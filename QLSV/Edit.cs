@@ -1,4 +1,5 @@
-﻿using DocumentFormat.OpenXml.Bibliography;
+﻿using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Bibliography;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,6 +33,46 @@ namespace QLSV
             home.Show();
     
         }
+        private void DeleteDataInExcel(string filePath, List<SinhVien> danhSachSinhVien)
+        {
+            using (XLWorkbook workbook = new XLWorkbook(filePath))
+            {
+                IXLWorksheet worksheet = workbook.Worksheet(1); // Get the first worksheet
+
+                // Xóa toàn bộ dữ liệu cũ trong file Excel
+                worksheet.Clear();
+
+                // Ghi lại dữ liệu mới từ danh sách sinh viên đã được cập nhật
+                worksheet.Cell(1, 1).Value = "StudentName";
+                worksheet.Cell(1, 2).Value = "StudentID";
+                worksheet.Cell(1, 3).Value = "StudentAge";
+                worksheet.Cell(1, 4).Value = "StudentGender";
+                worksheet.Cell(1, 5).Value = "StudentDateOfBirth";
+                worksheet.Cell(1, 6).Value = "StudentMathScore";
+                worksheet.Cell(1, 7).Value = "StudentPhysicsScore";
+                worksheet.Cell(1, 8).Value = "StudentChemistryScore";
+                worksheet.Cell(1, 9).Value = "GPA";
+                worksheet.Cell(1, 10).Value = "Rank";
+
+                for (int i = 0; i < danhSachSinhVien.Count; i++)
+                {
+                    SinhVien sv = danhSachSinhVien[i];
+                    worksheet.Cell(i + 2, 1).Value = sv.StudentName;
+                    worksheet.Cell(i + 2, 2).Value = sv.StudentID;
+                    worksheet.Cell(i + 2, 3).Value = sv.StudentAge;
+                    worksheet.Cell(i + 2, 4).Value = sv.StudentGender;
+                    worksheet.Cell(i + 2, 5).Value = sv.StudentDateOfBirth;
+                    worksheet.Cell(i + 2, 6).Value = sv.StudentMathScore;
+                    worksheet.Cell(i + 2, 7).Value = sv.StudentPhysicsScore;
+                    worksheet.Cell(i + 2, 8).Value = sv.StudentChemistryScore;
+                    worksheet.Cell(i + 2, 9).Value = sv.GPA;
+                    worksheet.Cell(i + 2, 10).Value = sv.Rank;
+                }
+
+                workbook.Save(); // Save the changes to the Excel file
+            }
+        }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -43,6 +84,8 @@ namespace QLSV
                 if (sinhVien != null)
                 {
                     truong.XoaSinhVien(sinhVien);
+                    List<SinhVien> danhSachSinhVien = truong.LayDanhSachSinhVien();
+                    DeleteDataInExcel(@"D:\LTGD\QLSV\QLSV\Student.xlsx", danhSachSinhVien);
                     MessageBox.Show("Xóa sinh viên thành công!");
                 }
                 else

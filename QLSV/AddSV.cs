@@ -19,7 +19,7 @@ namespace QLSV
 
         private Truong truong;
 
-        public AddSV(Truong truong, SinhVien sinhVien)
+        public AddSV(Truong truong, SinhVien sinhVien, bool isUpdateMode)
         {
             InitializeComponent();
             this.truong = truong;
@@ -27,6 +27,14 @@ namespace QLSV
             if (sinhVien != null)
             {
                 txtID.Text = sinhVien.StudentID;
+            }
+            if (isUpdateMode)
+            {
+                button1.Visible = false;
+            }
+            else
+            {
+                button3.Visible = false;
             }
         }
 
